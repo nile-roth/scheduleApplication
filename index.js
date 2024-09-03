@@ -1,5 +1,5 @@
 //dependencies
-const express = require('express');            //express.js for frontend framework
+const express = require('express');            //express.js for backend framework
 const sqlite3 = require('sqlite3').verbose();  //sqlite for local database
 const bcrypt = require('bcryptjs');            //for password hashing 
 const jwt = require('jsonwebtoken');           //for passing task data to/from server
