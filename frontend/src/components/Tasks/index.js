@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useState, useEffect} from 'react';
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
@@ -39,3 +40,16 @@ function Tasks() {
 };
 
 export default Tasks;
+=======
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+>>>>>>> 90968e4f63620a6b9785816a7cdd689b5ef5dd5c
