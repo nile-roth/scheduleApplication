@@ -20,10 +20,26 @@ function TaskForm( {tasks, setTasks} ) {
         }))
     };
 
+    // Convert 24-hour format to 12-hour format with AM/PM
+    const convertTo12Hour = (time) => {
+        let [hours, minutes] = time.split(':');
+        hours = parseInt(hours);
+
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;  // Convert 0 to 12 for 12 AM, and handle hours past 12
+        return `${hours}:${minutes} ${ampm}`;
+    };
+
     const handleSubmit = event => { 
         event.preventDefault()
-        setTasks([task, ...tasks])
-        console.log(task)
+
+        const updatedTask = {
+            ...task,
+            taskTime: convertTo12Hour(task.taskTime), // Convert taskTime to 12-hour format
+        };
+
+        setTasks([updatedTask, ...tasks]);
+        console.log(updatedTask)
         axios.post('http://localhost:9000/tasks', task)
         .then(res => {
             console.log(res)
@@ -45,7 +61,6 @@ function TaskForm( {tasks, setTasks} ) {
                 onChange={handleChange}
             />
 
-            {/* Task Date */}
             <input
                 type="date"
                 required
@@ -54,7 +69,6 @@ function TaskForm( {tasks, setTasks} ) {
                 onChange={handleChange}
             />
 
-            {/* Task Time */}
             <input
                 type="time"
                 required
@@ -63,7 +77,6 @@ function TaskForm( {tasks, setTasks} ) {
                 onChange={handleChange}
             />
 
-            {/* Submit Button */}
             <button type="submit">Add Task</button>
         </form>
     )
