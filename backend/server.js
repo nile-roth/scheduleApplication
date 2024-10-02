@@ -25,12 +25,12 @@ server.get('/tasks', async (req, res) => {
 
 server.post('/tasks', async (req, res) => {
     //POST a task
-    const { taskTitle } = req.body
-    if (!taskTitle) {
-        return res.status(400).json( {message: 'You must include a task in your request'})  //chagne to taskTItle?
+    const { taskTitle, taskDate, taskTime } = req.body
+    if (!taskTitle || !taskDate || !taskTime) {
+        return res.status(400).json( {message: 'You must include a task in your request'})  
     }
     try {
-        await db('tasks').insert( {taskTitle} )
+        await db('tasks').insert( {taskTitle, taskDate, taskTime} )
         res.status(201).json({ message: 'Task succesfully Stored!'})
     } catch(err) {
         console.log(err)
