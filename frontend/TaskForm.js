@@ -30,12 +30,63 @@ function TaskForm( {tasks, setTasks} ) {
         return `${hours}:${minutes} ${ampm}`;
     };
 
+    const convertDate = (date) => {
+        let [year, month, day] = date.split('-');
+        year = parseInt(year)
+        day = parseInt(day)
+
+        switch (month) {
+            case '01':
+                month = "January";
+                break;
+            case '02':
+                month = "February";
+                break;
+            case '03':
+                month = "March";
+                break;
+            case '04':
+                month = "April";
+                break;
+            case '05':
+                month = "May";
+                break;
+            case '06':
+                month = "June";
+                break;
+            case '07':
+                month = "July";
+                break;
+            case '08':
+                month = "August";
+                break;
+            case '09':
+                month = "September";
+                break;
+            case '10':
+                month = "October";
+                break;
+            case '11':
+                month = "November";
+                break;
+            case '12':
+                month = "December";
+                break;
+            default:
+                month = "Invalid month";
+
+        }
+        
+        return `${month}, ${day} ${year}`;
+    }
+
     const handleSubmit = event => { 
         event.preventDefault()
 
         const updatedTask = {
             ...task,
             taskTime: convertTo12Hour(task.taskTime), // Convert taskTime to 12-hour format
+            taskDate: convertDate(task.taskDate)
         };
 
         setTasks([updatedTask, ...tasks]);
@@ -51,33 +102,39 @@ function TaskForm( {tasks, setTasks} ) {
     }
     return(
         <form onSubmit={handleSubmit}>
-            
-            <input
-                type="text"
-                required
-                name="taskTitle"
-                value={task.taskTitle}
-                placeholder="Enter task"
-                onChange={handleChange}
-            />
+            <div class = "formInput">
+                <input
+                    type="text"
+                    required
+                    name="taskTitle"
+                    value={task.taskTitle}
+                    placeholder="Enter task"
+                    onChange={handleChange}
+                />
 
-            <input
-                type="date"
-                required
-                name="taskDate"
-                value={task.taskDate}
-                onChange={handleChange}
-            />
+                <div class="secRow">
+                    <div class="datetime">
+                        
+                        <input
+                            type="date"
+                            required
+                            name="taskDate"
+                            value={task.taskDate}
+                            onChange={handleChange}
+                        />
 
-            <input
-                type="time"
-                required
-                name="taskTime"
-                value={task.taskTime}
-                onChange={handleChange}
-            />
-
-            <button type="submit">Add Task</button>
+                        <input
+                            type="time"
+                            required
+                            name="taskTime"
+                            value={task.taskTime}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    
+                    <button type="submit">Add Task</button>
+                </div>
+            </div>  
         </form>
     )
 };
