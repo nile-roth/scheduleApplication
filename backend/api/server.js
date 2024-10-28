@@ -24,16 +24,23 @@ server.get('/tasks', async (req, res) => {
 });
 
 server.post('/tasks', async (req, res) => {
-    //POST a task
-    const { taskTitle, taskDate, taskTime } = req.body
+    // Destructure task properties from the request body
+    const { taskTitle, taskDate, taskTime } = req.body;
+
     if (!taskTitle || !taskDate || !taskTime) {
-        return res.status(400).json( {message: 'You must include a task in your request'})  
+        return res.status(400).json({ message: 'You must include a task in your request' });
     }
+
     try {
-        await db('tasks').insert( {taskTitle, taskDate, taskTime} )
-        res.status(201).json({ message: 'Task succesfully Stored!'})
-    } catch(err) {
-        console.log(err)
+        // Insert the task and return the id of the new row
+        const [id] = await db('tasks').insert({ taskTitle, taskDate, taskTime });
+
+        // Fetch the newly created task by its id and return it
+        const newTask = await db('tasks').where({ id }).first();
+        res.status(201).json(newTask); // Send the created task object
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Error storing task' });
     }
 });
 
