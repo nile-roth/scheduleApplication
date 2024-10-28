@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Tasks from './components/Tasks/main';
+import TaskController from './taskController'; // Importing TaskController
 
 function App() {
   return (
     <div className="App">
-      <Tasks />
+      <TaskController /> {/* Using TaskController to handle the app logic */}
     </div>
   );
-};
+}
 
 export default App;
