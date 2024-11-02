@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import TaskController from './taskController'; // Importing TaskController
+import TaskController from './controllers/taskController'; // Importing TaskController
 
 function App() {
   return (
