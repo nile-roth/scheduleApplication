@@ -1,7 +1,7 @@
 // TaskController.js
 import React, { useState, useEffect } from 'react';
-import TaskModel from './models/taskModel';
-import TaskView from './views/taskView';
+import TaskModel from './entities/taskModel';
+import TaskView from './templates/taskView';
 
 function TaskController() {
     const [tasks, setTasks] = useState([]);
