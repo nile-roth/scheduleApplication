@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+
+    <body>
+        <h1>Daily Scheduler</h1>
+        <form class="task-form">
+            <div class="formInput">
+                <input type="text" id="title" placeholder="Task Title" required />
+        
+                <div class="secRow">
+                    <div class="datetime">
+                        <input type="date" id="due_date" required />
+                        <input type="time" id="due_time" required />
+                    </div>
+        
+                    <button type="submit">Add Task</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="task-list"></div>
+        <script src="main.js"></script>
+
+    </body>
+</html>

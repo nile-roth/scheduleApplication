@@ -1,0 +1,9 @@
+{
+    "name": "ui-service",
+    "version": "1.0.0",
+    "description": "UI for Schedule App",
+    "main": "index.html",
+    "scripts": {},
+    "dependencies": {}
+  }
+  
