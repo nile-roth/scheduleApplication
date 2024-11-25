@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  ui-service:
+    build:
+      context: ./ui-service
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  task-service:
+    build:
+      context: ./task-service
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
